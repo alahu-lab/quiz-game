@@ -93,3 +93,4 @@ quiz-game/
     "best_total": 5
 }
 ```
+- clone한 저장소에서 이 줄을 추가하고 push한 뒤, 원본 폴더에서 pull로 가져왔습니다.
