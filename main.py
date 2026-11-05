@@ -130,23 +130,47 @@ def show_quiz_list(quizzes):
     for index, quiz in enumerate(quizzes, start=1):
         print(f"[{index}] {quiz.question}")
     print("-" * 40)
+def update_best_score(state, correct, total):
+    """이번 점수가 최고 점수보다 높으면 갱신한다."""
+    score = correct * 100 // total
+    best = state["best_score"]
+    print(f"이번 점수: {score}점")
+    if best is None or score > best:
+        state["best_score"] = score
+        state["best_total"] = total
+        state["best_correct"] = correct
+        print("새로운 최고 점수입니다!")
+
+
+def show_best_score(state):
+    """저장된 최고 점수를 보여준다."""
+    if state["best_score"] is None:
+        print("[!] 아직 퀴즈를 풀지 않았습니다.")
+        return
+    print(
+        f"\n최고 점수: {state['best_score']}점 "
+        f"({state['best_total']}문제 중 {state['best_correct']}문제 정답)"
+    )
 def main():
     quizzes = create_default_quizzes()
+    state = {"best_score": None, "best_total": 0, "best_correct": 0}
     try:
         while True:
             show_menu()
             choice = read_number("선택: ", 1, 5)
             if choice == 1:
-                play_quiz(quizzes)
+                result = play_quiz(quizzes)
+                if result is not None:
+                    update_best_score(state, result[0], result[1])
             elif choice == 2:
                 add_quiz(quizzes)
             elif choice == 3:
                 show_quiz_list(quizzes)
+            elif choice == 4:
+                show_best_score(state)
             elif choice == 5:
                 print("게임을 종료합니다.")
                 break
-            else:
-                print(f"(준비 중) {choice}번 기능입니다.")
     except (KeyboardInterrupt, EOFError):
         print("\n입력이 중단되어 안전하게 종료합니다.")
 
