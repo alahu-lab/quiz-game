@@ -73,19 +73,47 @@ def read_number(prompt, min_value, max_value):
             continue
         return number
 
+def play_quiz(quizzes):
+    """퀴즈를 모두 출제하고 (맞힌 개수, 전체 개수)를 돌려준다."""
+    if not quizzes:
+        print("[!] 등록된 퀴즈가 없습니다. 먼저 퀴즈를 추가하세요.")
+        return None
 
+    total = len(quizzes)
+    correct = 0
+    print(f"\n퀴즈를 시작합니다! (총 {total}문제)")
+
+    for index, quiz in enumerate(quizzes, start=1):
+        print("-" * 40)
+        print(f"[문제 {index}]")
+        quiz.show()
+        user_answer = read_number("정답 입력: ", 1, 4)
+        if quiz.check_answer(user_answer):
+            print("정답입니다!")
+            correct += 1
+        else:
+            print(f"틀렸습니다. 정답은 {quiz.answer}번입니다.")
+
+    score = correct * 100 // total
+    print("=" * 40)
+    print(f"결과: {total}문제 중 {correct}문제 정답! ({score}점)")
+    print("=" * 40)
+    return correct, total
 def main():
+    quizzes = create_default_quizzes()
     try:
         while True:
             show_menu()
             choice = read_number("선택: ", 1, 5)
-            if choice == 5:
+            if choice == 1:
+                play_quiz(quizzes)
+            elif choice == 5:
                 print("게임을 종료합니다.")
                 break
-            print(f"(준비 중) {choice}번 기능입니다.")
+            else:
+                print(f"(준비 중) {choice}번 기능입니다.")
     except (KeyboardInterrupt, EOFError):
         print("\n입력이 중단되어 안전하게 종료합니다.")
-
 
 if __name__ == "__main__":
     main()
