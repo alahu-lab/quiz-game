@@ -1,3 +1,19 @@
+class Quiz:
+    """퀴즈 한 문제를 표현한다."""
+
+    def __init__(self, question, choices, answer):
+        self.question = question  # 문제 (문자열)
+        self.choices = choices    # 선택지 4개가 담긴 리스트
+        self.answer = answer      # 정답 번호 (1~4)
+
+    def show(self):
+        print(self.question)
+        print()
+        for number, choice in enumerate(self.choices, start=1):
+            print(f"{number}. {choice}")
+
+    def check_answer(self, user_answer):
+        return user_answer == self.answer
 def show_menu():
     print("=" * 40)
     print("        나만의 게임 퀴즈")
