@@ -1,4 +1,3 @@
-# 게임 퀴즈
 # 나만의 게임 퀴즈
 
 터미널에서 즐기는 Python 콘솔 퀴즈 게임입니다.
@@ -93,4 +92,30 @@ quiz-game/
     "best_total": 5
 }
 ```
-- clone한 저장소에서 이 줄을 추가하고 push한 뒤, 원본 폴더에서 pull로 가져왔습니다.
+## 7. 실행 화면
+
+### 개발 환경
+
+![개발 환경](docs/screenshots/env.png)
+
+### 메뉴 / 퀴즈 추가 / 퀴즈 목록
+
+![메뉴, 퀴즈 추가, 퀴즈 목록](docs/screenshots/add_quiz.png)
+
+### 퀴즈 풀기
+
+![퀴즈 풀기](docs/screenshots/play.png)
+
+### 점수 확인
+
+![점수 확인](docs/screenshots/score.png)
+
+### Git 커밋 기록
+
+![git log 그래프](docs/screenshots/git-graph.png)
+
+## 8. 저장소 복제 실습
+
+- `git clone`으로 저장소를 `quiz-game-clone` 폴더에 복제했습니다.
+- 복제한 저장소에서 README에 한 줄을 추가하고 commit, push 했습니다.
+- 원래 폴더(`quiz-game`)에서 `git pull`로 변경사항을 가져와 README에 반영된 것을 확인했습니다.
